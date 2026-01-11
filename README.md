@@ -1,26 +1,66 @@
-# Read Me First
-The following was discovered as part of building this project:
-
-* No Docker Compose services found. As of now, the application won't start! Please add at least one service to the `compose.yaml` file.
-
 # Getting Started
+## Introducción
 
-### Introduccion
-Todos los patrones pueden clasificarse por su propósito. Este libro cubre tres grupos generales de patrones:
+Los patrones de diseño son soluciones probadas a problemas comunes en el desarrollo de software. Su objetivo principal es mejorar la calidad del código, facilitando su mantenimiento, flexibilidad y reutilización.
 
-Los **patrones creacionales** proporcionan mecanismos de creación de objetos que incrementan la flexibilidad y la reutilización de código existente.
+En general, los patrones ayudan a los desarrolladores a:
+* Evitar duplicación de código y errores recurrentes.
 
-Los **patrones estructurales** explican cómo ensamblar objetos y clases en estructuras más grandes a la vez que se mantiene la flexibilidad y eficiencia de la estructura.
+* Establecer buenas prácticas en la estructura y organización de la aplicación.
 
-Los **patrones de comportamiento** se encargan de una comunicación efectiva y la asignación de responsabilidades entre objetos.
+* Comunicar la intención de diseño de manera clara a otros desarrolladores.
+
+Todos los patrones se clasifican en tres grupos generales según su propósito:
+* **Patrones creacionales**: Se enfocan en la forma en que se crean los objetos, separando la lógica de creación de su uso. Esto permite que el código sea más flexible, reutilizable y fácil de mantener.
+
+* **Patrones estructurales**: Explican cómo ensamblar objetos y clases en estructuras más grandes, manteniendo la flexibilidad y eficiencia. Permiten reutilizar componentes de manera consistente.
+
+* **Patrones de comportamiento**: Gestionan la comunicación y la asignación de responsabilidades entre objetos, asegurando que la colaboración sea coherente y predecible.
 
 
 ### Patrones creacionales
+Los **Patrones creacionales** se enfocan en la forma en que se crean los objetos, separando la lógica de creación de su uso. Esto permite que el código sea más flexible, reutilizable y fácil de mantener.
 
-| Patrón               | Qué crea                                                       | Nivel de abstracción    | Explicación breve                                                                                                      | Ejemplo mental                                                                                               |
-| -------------------- | -------------------------------------------------------------- | ----------------------- | ---------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| **Factory Method**   | Un único tipo de objeto (una instancia concreta)               | Método individual       | Permite crear un objeto sin exponer la lógica de creación al cliente.                                                  | Una fábrica de coches que fabrica un solo modelo de coche                                                    |
-| **Abstract Factory** | Una familia de objetos relacionados (coherentes entre sí)      | Conjunto de fábricas    | Permite crear familias completas de objetos relacionados sin acoplar al cliente con clases concretas.                  | Una fábrica de coches que fabrica varios modelos compatibles entre sí (motor, chasis, ruedas del mismo tipo) |
-| **Builder**          | Un objeto complejo paso a paso con muchos parámetros           | Constructor flexible    | Permite construir objetos complejos paso a paso, con campos obligatorios y opcionales, de forma clara y segura.        | Crear un usuario o un mensaje de notificación con múltiples campos opcionales y valores por defecto          |
-| **Prototype**        | Nuevas copias de un objeto existente (clonaciones controladas) | Objeto base (prototipo) | Permite crear nuevos objetos copiando (clonando) un prototipo existente, evitando el coste de construirlos desde cero. | Copiar un documento o plantilla configurada para reutilizar su estructura sin reconfigurarla desde el inicio |
-| **Singleton**        | Una única instancia de una clase                               | Instancia global única  | Garantiza que una clase tenga solo **una instancia** en toda la aplicación y proporciona un punto de acceso global.    | Una impresora en red: aunque varios usuarios la usen, solo existe un único objeto impresora en el sistema    |
+| Patrón               | Qué crea                                               | Nivel de abstracción    | Explicación breve                                                                                                                | Ejemplo mental                                                                                            |
+| -------------------- | ------------------------------------------------------ | ----------------------- | -------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| **Factory Method**   | Una instancia concreta de un tipo de objeto            | Método individual       | Permite crear un objeto sin exponer al cliente la lógica concreta de creación, delegando la responsabilidad a subclases.         | Una fábrica de coches que produce un solo modelo de coche según la necesidad del cliente                  |
+| **Abstract Factory** | Una familia completa de objetos relacionados           | Conjunto de fábricas    | Permite crear familias de objetos relacionados sin acoplar al cliente con clases concretas, asegurando compatibilidad.           | Una fábrica de coches que produce motor, chasis y ruedas coherentes entre sí para un modelo específico    |
+| **Builder**          | Objetos complejos paso a paso con múltiples parámetros | Constructor flexible    | Permite construir objetos complejos de manera gradual, controlando qué campos son obligatorios y cuáles opcionales.              | Crear un usuario o un mensaje de notificación configurando cada campo paso a paso                         |
+| **Prototype**        | Copias de un objeto existente (clonación controlada)   | Objeto base (prototipo) | Permite crear nuevos objetos clonando un prototipo, evitando el coste de construirlos desde cero y reutilizando configuraciones. | Copiar un documento o plantilla previamente configurada para crear versiones nuevas sin reconfigurar todo |
+| **Singleton**        | Una única instancia de una clase                       | Instancia global única  | Garantiza que una clase tenga solo **una instancia** en toda la aplicación y proporciona un punto de acceso global.              | Una impresora en red: aunque varios usuarios la usen, solo existe un único objeto impresora en el sistema |
+
+
+
+### Patrones Estructurales
+
+Los **patrones estructurales** ayudan a organizar clases y objetos en estructuras más grandes de manera eficiente y flexible. Permiten combinar componentes de forma coherente y reutilizable.
+
+| Patrón        | Qué organiza                                                    | Nivel de abstracción | Explicación breve                                                                                                   | Ejemplo mental                                                                             |
+| ------------- | --------------------------------------------------------------- | -------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| **Adapter**   | Permite que clases con interfaces incompatibles trabajen juntas | Objeto               | Convierte la interfaz de una clase en otra que el cliente espera, facilitando la compatibilidad.                    | Un cargador que convierte enchufe europeo a americano para poder usar un dispositivo       |
+| **Bridge**    | Separación de abstracción e implementación                      | Clase/Objeto         | Permite variar la implementación y la abstracción de manera independiente, facilitando extensiones futuras.         | Un control remoto universal que puede manejar diferentes marcas de televisores             |
+| **Composite** | Estructuras jerárquicas de objetos                              | Objeto               | Permite tratar **objetos individuales y compuestos** de la misma manera.                                            | Un directorio de archivos donde cada carpeta puede contener archivos o subcarpetas         |
+| **Decorator** | Añade responsabilidades a objetos dinámicamente                 | Objeto               | Permite agregar funcionalidad a objetos sin alterar su estructura original.                                         | Una ventana a la que se le añaden bordes, scroll o sombra de manera opcional               |
+| **Facade**    | Interfaz simplificada sobre un subsistema complejo              | Objeto               | Proporciona una interfaz única que simplifica la interacción con un conjunto de clases complejas.                   | Un sistema de biblioteca que ofrece un único método para buscar, reservar y prestar libros |
+| **Flyweight** | Objetos compartidos para eficiencia de memoria                  | Objeto               | Permite compartir objetos para reducir el consumo de memoria cuando muchos objetos similares se usan repetidamente. | Letras de un documento que comparten la misma información de formato para no duplicarla    |
+| **Proxy**     | Sustituye a otro objeto para controlar acceso o carga           | Objeto               | Actúa como intermediario para controlar el acceso a un objeto real, añadiendo funcionalidades adicionales.          | Un servidor intermedio que valida permisos antes de acceder a la base de datos             |
+
+
+
+### Patrones de Comportamiento
+
+Los **patrones de comportamiento** definen cómo objetos y clases interactúan y se comunican, facilitando la asignación de responsabilidades y promoviendo un flujo consistente en la aplicación.
+
+| Patrón                      | Qué gestiona                                                   | Nivel de abstracción | Explicación breve                                                                                        | Ejemplo mental                                                                                                |
+| --------------------------- | -------------------------------------------------------------- | -------------------- | -------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| **Chain of Responsibility** | Cadena de objetos para manejar solicitudes                     | Objeto               | Permite pasar una solicitud a lo largo de una cadena de objetos hasta que uno la maneje.                 | Un sistema de atención al cliente donde la consulta pasa del operador junior al senior si no puede resolverla |
+| **Command**                 | Encapsula una petición como objeto                             | Objeto               | Permite parametrizar objetos con operaciones, posponer su ejecución o registrarlas.                      | Un botón de “Deshacer” que almacena la acción como un objeto para revertirla más tarde                        |
+| **Interpreter**             | Lenguaje o expresión interpretada                              | Clase/Objeto         | Define una representación de gramática y un intérprete que evalúa expresiones en ese lenguaje.           | Un motor de reglas que interpreta expresiones como `edad > 18 && país == "ES"`                                |
+| **Iterator**                | Acceso secuencial a elementos de una colección                 | Objeto               | Proporciona una forma de recorrer una colección sin exponer su estructura interna.                       | Un lector de listas que permite recorrer todos los elementos sin conocer cómo están almacenados               |
+| **Mediator**                | Comunicación centralizada entre objetos                        | Objeto               | Facilita la interacción entre objetos mediante un objeto mediador, reduciendo dependencias.              | Un controlador de tráfico aéreo que coordina la comunicación entre varios aviones                             |
+| **Memento**                 | Guarda y restaura el estado de un objeto                       | Objeto               | Permite capturar y restaurar el estado interno de un objeto sin violar su encapsulación.                 | Un editor de texto que permite deshacer y rehacer cambios                                                     |
+| **Observer**                | Notificación automática a dependientes                         | Objeto               | Permite que un objeto notifique a otros cuando cambia su estado.                                         | Suscribirse a alertas de correo o redes sociales que se activan cuando ocurre un evento                       |
+| **State**                   | Cambia el comportamiento de un objeto según su estado          | Objeto               | Permite modificar el comportamiento de un objeto cuando cambia su estado interno.                        | Un reproductor de música que actúa diferente cuando está en modo “pausa” o “reproducción”                     |
+| **Strategy**                | Selección de algoritmo o comportamiento en tiempo de ejecución | Objeto               | Permite definir una familia de algoritmos intercambiables y seleccionar cuál usar dinámicamente.         | Elegir entre distintos métodos de pago en una aplicación de e-commerce                                        |
+| **Template Method**         | Esqueleto de algoritmo con pasos definibles                    | Clase                | Define la estructura de un algoritmo, permitiendo que los pasos específicos se implementen en subclases. | Preparar un café siguiendo la misma receta básica, pero con diferentes tipos de leche                         |
+| **Visitor**                 | Operación sobre elementos de objetos sin modificar las clases  | Objeto               | Permite definir operaciones externas sobre un conjunto de objetos sin cambiar sus clases.                | Un sistema de análisis que recorre distintos tipos de documentos para extraer información                     |
