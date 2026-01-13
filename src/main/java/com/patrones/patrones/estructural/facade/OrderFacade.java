@@ -16,7 +16,7 @@ public class OrderFacade {
         this.shippingService = shippingService;
     }
 
-    // Método simplificado para el cliente
+    // Metodo simplificado para el cliente
     public void placeOrder(String productId, int quantity, String cardNumber) {
         System.out.println("Procesando pedido a través de la fachada...");
 
